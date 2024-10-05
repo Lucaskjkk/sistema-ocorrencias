@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Ocorrência</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Registrar Ocorrência</h1>
+    <form method="post" action="{{ url_for('register') }}">
+        <label for="titulo">Título:</label>
+        <select id="titulo" name="titulo" required>
+            <option value="SAT sem conexão">SAT sem conexão</option>
+            <option value="Sem rede">Sem rede</option>
+            <option value="Problema geral no PDV">Problema geral no PDV</option>
+            <option value="Problema no Computador">Problema no Computador</option>
+            <option value="Impressora fiscal com problema">Impressora fiscal com problema</option>
+            <option value="Banco de dados corrompido">Banco de dados corrompido</option>
+            <option value="Problema com múltiplos pagamentos">Problema com múltiplos pagamentos</option>
+            <option value="Erro no Pinpad">Erro no Pinpad</option>
+            <option value="Liberação de PenDrive">Liberação de PenDrive</option>
+            <option value="Cancelar venda">Cancelar venda</option>
+            <option value="Consultar venda">Consultar venda</option>
+            <option value="Problema na catraca">Problema na catraca</option>
+            <option value="Carga total">Carga total</option>
+            <option value="Problema Totens">Problema Totens</option>
+            <option value="Problemas diversos na operação">Problemas diversos na operação</option>
+            <option value="Instalação de programa">Instalação de programa</option>
+            <option value="Liberação de PenDrive">Liberação de PenDrive</option>
+            <option value="Configurar usuário">Configurar usuário</option>
+            <option value="Configurar acesso">Configurar acesso</option>
+            <option value="Liberação geral">Liberação geral</option>
+            <option value="Problemas diversos administrativos">Problemas diversos administrativos</option>
+            <option value="Queda de energia">Queda de energia</option>
+        </select>
+        
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" required></textarea>
+
+        <label for="setor">Setor:</label>
+        <select id="setor" name="setor" required>
+            <option value="A&B">A&B</option>
+            <option value="Arrecadação">Arrecadação</option>
+            <option value="Marketing">Marketing</option>
+            <option value="TI">TI</option>
+            <option value="Operação">Operação</option>
+            <option value="Segurança">Segurança</option>
+            <option value="Recepção">Recepção</option>
+            <option value="Vendas">Vendas</option>
+            <option value="Financeiro">Financeiro</option>
+            <option value="Compras">Compras</option>
+            <option value="Fiscal">Fiscal</option>
+            <option value="Contabilidade">Contabilidade</option>
+            <option value="RH">RH</option>
+            <option value="Diretoria">Diretoria</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Manutenção">Manutenção</option>
+            <option value="Limpeza">Limpeza</option>
+            <option value="Cantina">Cantina</option>
+            <option value="WP">WP</option>
+            <option value="Estoque">Estoque</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Ouvidoria">Ouvidoria</option>
+            <option value="Televendas">Televendas</option>
+        </select>
+
+        <label for="local">Local:</label>
+        <input type="text" id="local" name="local" required>
+
+        <label for="gravidade">Gravidade:</label>
+        <select id="gravidade" name="gravidade" required>
+            <option value="baixa">Baixa</option>
+            <option value="média">Média</option>
+            <option value="grave">Grave</option>
+        </select>
+
+        <label for="observacoes">Observações:</label>
+        <textarea id="observacoes" name="observacoes"></textarea>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required>
+
+        <button type="submit">Registrar</button>
+    </form>
+    <br>
+    <a href="{{ url_for('ocorrencias') }}" class="center-link">Ver Ocorrências Registradas</a>
+    <a href="{{ url_for('charts') }}" class="center-link">Relatório em gráfico</a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ocorrências Registradas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ocorrências Registradas</h1>
+
+    <form method="get" action="{{ url_for('search') }}">
+        <label for="id">Pesquisar por ID:</label>
+        <input type="text" id="id" name="id">
+        
+        <label for="date">Pesquisar por Data:</label>
+        <input type="date" id="date" name="date">
+        
+        <button type="submit">Pesquisar</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="center-link">Registrar Nova Ocorrência</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Setor</th>
+            <th>Local</th>
+            <th>Gravidade</th>
+            <th>Observações</th>
+            <th></th>
+        </tr>
+        {% for ocorrencia in ocorrencias %}
+        <tr>
+            <td>{{ ocorrencia[0] }}</td>
+            <td>{{ ocorrencia[1] }}</td>
+            <td>{{ ocorrencia[2] }}</td>
+            <td>{{ ocorrencia[3] }}</td>
+            <td>{{ ocorrencia[4] }}</td>
+            <td>{{ ocorrencia[5] }}</td>
+            <td>{{ ocorrencia[6] }}</td>
+            <td>{{ ocorrencia[7] }}</td>
+            <td>
+                <a href="{{ url_for('delete', id=ocorrencia[0]) }}" class="delete-button">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
+</body>
+</html>

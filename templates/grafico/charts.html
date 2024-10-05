@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='charts.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Gráficos de Ocorrências</h1>
+
+        <!-- Formulário de Filtros -->
+        <form method="get" action="{{ url_for('charts') }}" class="filters-form">
+            <label for="setor">Setor:</label>
+            <select name="setor" id="setor">
+                <option value="">Todos</option>
+                {% for setor in setores %}
+                <option value="{{ setor[0] }}" {% if setor_filtro == setor[0] %}selected{% endif %}>{{ setor[0] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="data_inicio">Data Início:</label>
+            <input type="date" name="data_inicio" id="data_inicio" value="{{ data_inicio }}">
+
+            <label for="data_fim">Data Fim:</label>
+            <input type="date" name="data_fim" id="data_fim" value="{{ data_fim }}">
+
+            <label for="gravidade">Gravidade:</label>
+            <select name="gravidade" id="gravidade">
+                <option value="">Todas</option>
+                {% for gravidade in gravidades %}
+                <option value="{{ gravidade[0] }}" {% if gravidade_filtro == gravidade[0] %}selected{% endif %}>{{ gravidade[0] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="titulo">Título:</label>
+            <select name="titulo" id="titulo">
+                <option value="">Todos</option>
+                {% for titulo in titulos %}
+                <option value="{{ titulo[0] }}" {% if titulo_filtro == titulo[0] %}selected{% endif %}>{{ titulo[0] }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn apply-filters">Aplicar Filtros</button>
+            <a href="{{ url_for('charts') }}" class="btn clear-filters">Limpar Filtros</a>
+        </form>
+
+        <div class="chart-container">
+            {% if setores_graph %}
+                <img src="data:image/png;base64,{{ setores_graph }}" alt="Gráfico de Setor">
+            {% else %}
+                <p>Gráfico de Setores não disponível.</p>
+            {% endif %}
+
+            {% if meses_graph %}
+                <img src="data:image/png;base64,{{ meses_graph }}" alt="Gráfico Mensal">
+            {% else %}
+                <p>Gráfico Mensal não disponível.</p>
+            {% endif %}
+
+            {% if titulos_graph %}
+                <img src="data:image/png;base64,{{ titulos_graph }}" alt="Gráfico por Título">
+            {% else %}
+                <p>Gráfico de Títulos não disponível.</p>
+            {% endif %}
+        </div>
+
+        <div class="text-center">
+            <a href="{{ url_for('index') }}" class="btn back-down">Voltar para a Página Inicial</a>
+        </div>
+    </div>
+</body>
+</html>
